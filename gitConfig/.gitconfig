@@ -1,0 +1,32 @@
+[alias]
+        # Get the current branch name (not so useful in itself, but used in
+        # other aliases)
+        branch-name = "!git rev-parse --abbrev-ref HEAD"
+        co = checkout
+        br = branch
+        ci = commit -m
+        st = status
+        cob = checkout -b
+        pom = pull origin master
+        # Push the current branch to the remote "origin", and set it to track
+        # the upstream branch
+        publish = "!git push origin $(git branch-name)"
+        update = "!git pull origin $(git branch-name)"
+        test = "!git push spikeTestFront1vpc $(git branch-name):master"
+        test2 = "!git push spikeTestFront2vpc $(git branch-name):master"
+        test-f = "!git push -f spikeTestFront1vpc $(git branch-name):master"
+        test2-f = "!git push -f spikeTestFront2vpc $(git branch-name):master"
+[user]
+	email = shane.murphy@newswhip.com
+	name = Shane Murphy
+[diff]
+    tool = meld
+[difftool]
+    prompt = false
+[difftool "meld"]
+    cmd = meld "$LOCAL" "$REMOTE"
+[merge]
+    tool = meld
+[mergetool "meld"]
+    # Choose one of these 2 lines (not both!) explained below.
+    cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
